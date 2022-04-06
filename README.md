@@ -28,9 +28,10 @@ Finally, it is also worth noting that four of the last six marathon world record
 
 To answer the project questions, I ran a 2x2 factorial ANOVA on the data for runners age 18-39, breaking them into groups based on sex and whether they ran a Boston Marathon qualifying time during the race. Because there were some minor issues with homogeneity of variance between groups, I also ran an alternative analysis using weighted least squares instead of ordinary least squares.
 
-The project code is broken into four parts:
+The project code is broken into five parts:
 
 * The marathon_scraper folder contains the code for the scrapy project I used to scrape the Boston Marathon data from the results pages. The boston_spider.py file is the code I wrote to scrape the data, while most of the rest of the code is standard scrapy project code.
+* The data folder contains the raw data that was scraped from the Boston Marathon results.
 * The cleaning.ipynb file contains the code I used to clean the data that I scraped, along with commentary explaining my reasoning for each cleaning step.
 * The exploratory_data_analysis.ipynb file contains my initial exploration of the data I cleaned in the cleaning.ipnyb file, along my observations along the way.
 * The ANOVA.ipnyb file contains the experiment setup and the ANOVA itself, along with assumption testing, estimation of effect size, and power analysis. It also contains an alternative analysis using weighted least squares instead of ordinary least squares.
