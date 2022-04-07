@@ -40,7 +40,7 @@ The project code is broken into five parts:
 
 The ANOVA revealed that there was a statistically significant interaction between the effects of sex and running a Boston qualifying time (F(1, 3932) = 20.79, p = 0.00).
 
-Simple main effects analysis showed that running a Boston qualifying time had a statistically significant effect on split difference for both men (p = 0.00) and women (p = 0.00). The effect sizes of running a Boston qualifying time on men and women were 1.13 and 1.03 standard deviations, respectively.
+Simple main effects analysis showed that running a Boston qualifying time had a statistically significant effect on split difference for both men (p = 0.00) and women (p = 0.00). The effect sizes of running a Boston qualifying time on men and women were 1.13 and 1.03 standard deviations, respectively. That is, men and women who ran BQ times ran split differences that were 1.13 and 1.03 standard deviations lower respectively than men and women who didn't run BQ times.
 
 Simple main effects analysis showed that sex did not have a statistically significant effect on split difference for runners who ran a Boston qualifying time (p = 0.08), but did have a statistically significant effect for runners who did not run a Boston qualifying time (p = 0.00). The effect size of being male on runners who did not run a Boston qualifying time was 0.29 standard deviations.
 
