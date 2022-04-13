@@ -6,7 +6,7 @@
 
 This project analyzes marathon pace strategy using data scraped from the 2021 Boston Marathon results. For purposes of this project, "pace strategy" can generally be broken down into three types that will be referred to throughout this project:
 
-* "Even pacing" refers to running the second half of the race in about as fast as the first half.
+* "Even pacing" refers to running the second half of the race about as fast as the first half.
 * "Positive splits" refers to running the second half of the race slower than the first half.
 * "Negative splits" refers to running the second half of the race faster than the first half.
 
