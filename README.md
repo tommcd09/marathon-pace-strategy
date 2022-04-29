@@ -24,14 +24,17 @@ Jared Ward, an American runner who placed 6th in the 2016 Olympic Marathon, is a
 
 Finally, it is also worth noting that four of the last six marathon world records and the two fastest (official) marathons ever run were all actually run with a negative splits strategy, though still fairly close to even pacing (see [here](https://www.runnersworld.com/training/a20819476/what-world-records-teach-about-marathon-pacing/) and [here](https://runningmagazine.ca/sections/runs-races/a-side-by-side-comparison-of-kipchoge-and-bekeles-berlin-marathons/)).
 
+### Data
+
+The data for this project consists of results from the 2021 Boston Marathon scraped from the BAA website using the code in the marathon_scraper folder. Unfortunately, the BAA does not allow publishing or reposting Boston Marathon results without expressed written consent from the BAA, so the data is not reproduced in this repository. However, the data can be obtained and viewed directly from the [BAA website](https://www.baa.org/races/boston-marathon/results/search-results).
+
 ### Project Organization and Methodology
 
 To answer the project questions, I ran a 2x2 factorial ANOVA on the data for runners age 18-39, breaking them into groups based on sex and whether they ran a Boston Marathon qualifying time during the race. Because there were some minor issues with homogeneity of variance between groups, I also ran an alternative analysis using weighted least squares instead of ordinary least squares.
 
-The project code is broken into five parts:
+The project code is broken into four parts:
 
 * The marathon_scraper folder contains the code for the scrapy project I used to scrape the Boston Marathon data from the results pages. The boston_spider.py file is the code I wrote to scrape the data, while most of the rest of the code is standard scrapy project code.
-* The data folder contains the raw data that was scraped from the Boston Marathon results.
 * The cleaning.ipynb file contains the code I used to clean the data that I scraped, along with commentary explaining my reasoning for each cleaning step.
 * The exploratory_data_analysis.ipynb file contains my initial exploration of the data I cleaned in the cleaning.ipnyb file, along my observations along the way.
 * The ANOVA.ipnyb file contains the experiment setup and the ANOVA itself, along with assumption testing, estimation of effect size, and power analysis. It also contains an alternative analysis using weighted least squares instead of ordinary least squares.
