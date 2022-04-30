@@ -34,6 +34,7 @@ The scraped data I used contains the following columns:
 * <b>place_division:</b> The runner's place within their age and sex group.
 * <b>sex:</b> The runner's sex (M or W)
 * <b>age_group:</b> An integer representing the runner's age group. These integers were scraped from the URLs of results pages and map to the following values: 1 = 18-39, 2 = 40-44, 9 = 45-49, 3 = 50-54, 10 = 55-59, 4 = 60-64, 11 = 65-69, 8 = 70-74, 12 = 75-79, 13 = 80+.
+* <b>name:</b> The runner's name and three letter country code in the form "Last Name, First Name (COU)".
 * <b>bib:</b> The runner's unique bib number. Relabeled "runner_id" during cleaning.
 * <b>half_split:</b> The runner's time for the first half of the marathon.
 * <b>finish_net:</b> The runner's finish time measured from the time they crossed the starting line to the time they crossed the finish line.
