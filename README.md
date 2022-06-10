@@ -1,4 +1,4 @@
-# marathon-pace-strategy
+# Analyzing Marathon Pace Strategy in Python
 
 ## About The Project
 
