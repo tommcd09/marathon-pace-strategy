@@ -61,3 +61,11 @@ The ANOVA revealed that there was a statistically significant interaction betwee
 Simple main effects analysis showed that running a Boston qualifying time had a statistically significant effect on split difference for both men (p = 0.00) and women (p = 0.00). The effect sizes of running a Boston qualifying time on men and women were 1.13 and 1.04 standard deviations, respectively. That is, men and women who ran BQ times ran split differences that were 1.13 and 1.04 standard deviations lower respectively than men and women who didn't run BQ times.
 
 Simple main effects analysis showed that gender did not have a statistically significant effect on split difference for runners who ran a Boston qualifying time (p = 0.08), but did have a statistically significant effect for runners who did not run a Boston qualifying time (p = 0.00). The effect size of being male on runners who did not run a Boston qualifying time was 0.26 standard deviations.
+
+### References
+
+1. Reese CS, Ward J. 'Analyzing Split Times For Runners In The 2013 St. George Marathon'. https://www.runblogrun.com/2017/04/17/Jared%20Ward%20Thesis.pdf.
+2. Santos-Lozano A, Collado P, Foster C, Lucia A, Garatachea N. (2014) 'Influence of Sex and Level on Marathon Pacing Strategy. Insights from the New York City Race'. International Journal of Sports Medicine. 35. 10.1055/s-0034-1367048. https://www.researchgate.net/publication/260226395_Influence_of_Sex_and_Level_on_Marathon_Pacing_Strategy_Insights_from_the_New_York_City_Race.
+3. March DS, Vanderburgh PM, Titlebaum PJ, Hoops ML. (2011) 'Age, Sex, and Finish Time as Determinants of Pacing in the Marathon'. Journal of Strength and Conditioning Research: February 2011 - Volume 25 - Issue 2 - p 386-391. https://journals.lww.com/nsca-jscr/Fulltext/2011/02000/Age,_Sex,_and_Finish_Time_as_Determinants_of.14.aspx.
+4. Beverly J. September 30, 2014, 'What World Records Teach About Marathon Pacing'. Runner's World. https://www.runnersworld.com/training/a20819476/what-world-records-teach-about-marathon-pacing/.
+5. Kelly M. September 29, 2019, 'A side-by-side comparison of Kipchoge and Bekele’s Berlin Marathons'. Canadian Running. https://runningmagazine.ca/sections/runs-races/a-side-by-side-comparison-of-kipchoge-and-bekeles-berlin-marathons/.
