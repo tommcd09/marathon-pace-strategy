@@ -41,6 +41,22 @@ The raw data contains the following columns:
 * <b>finish_net:</b> The runner's finish time measured from the time they crossed the starting line to the time they crossed the finish line. Relabeled "finish" during cleaning.
 * <b>finish_gun:</b> The runner's finish time measured from the time of the starting gun to the time they crossed the finish line.
 
+### Data
+
+The data for this project consists of results from the 2021 Boston Marathon scraped from the BAA website using the code in the marathon_scraper folder. Unfortunately, the BAA does not allow publishing or reposting Boston Marathon results without expressed written consent from the BAA, so the data is not reproduced in this repository. However, the data can be obtained and viewed directly from the [BAA website](https://www.baa.org/races/boston-marathon/results/search-results).
+
+The scraped data I used contains the following columns:
+* <b>place_overall:</b> The runner's overall placing in the race.
+* <b>place_gender:</b> The runner's place within their sex (M or W). Relabeled "place_sex" during cleaning.
+* <b>place_division:</b> The runner's place within their age and sex group.
+* <b>sex:</b> The runner's sex (M or W)
+* <b>age_group:</b> An integer representing the runner's age group. These integers were scraped from the URLs of results pages and map to the following values: 1 = 18-39, 2 = 40-44, 9 = 45-49, 3 = 50-54, 10 = 55-59, 4 = 60-64, 11 = 65-69, 8 = 70-74, 12 = 75-79, 13 = 80+.
+* <b>name:</b> The runner's name and three letter country code in the form "Last Name, First Name (COU)".
+* <b>bib:</b> The runner's unique bib number. Relabeled "runner_id" during cleaning.
+* <b>half_split:</b> The runner's time for the first half of the marathon.
+* <b>finish_net:</b> The runner's finish time measured from the time they crossed the starting line to the time they crossed the finish line.
+* <b>finish_gun:</b> The runner's finish time measured from the time of the starting gun to the time they crossed the finish line.
+
 ### Project Organization and Methodology
 
 To answer the project questions, this project runs a 2x2 factorial ANOVA on the data for runners age 18-39, breaking them into groups based on gender and whether they ran a Boston Marathon qualifying time during the race.
