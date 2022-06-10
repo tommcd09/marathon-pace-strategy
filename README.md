@@ -6,44 +6,58 @@
 
 This project analyzes marathon pace strategy using data scraped from the 2021 Boston Marathon results. For purposes of this project, "pace strategy" can generally be broken down into three types that will be referred to throughout this project:
 
-* "Even pacing" refers to running the second half of the race in about as fast as the first half.
+* "Even pacing" refers to running the second half of the race about as fast as the first half.
 * "Positive splits" refers to running the second half of the race slower than the first half.
 * "Negative splits" refers to running the second half of the race faster than the first half.
 
-This project attempts to answer the following questions for runners age 18-39 who finished the marathon in less than 5 hours:
+This project attempts to answer the following questions for runners age 18-39 who finished the 2021 Boston Marathon in less than 5 hours:
 
-* Is there any relationship between marathon finish time and pace strategy?
-* Is there any relationship between a runner's sex and their marathon pace strategy?
-* Does the relationship of marathon finish time to pace strategy depend on a runner's sex, or does the relationship of sex to pace strategy depend on a runner's finish time?
+1. Is there any relationship between marathon finish time and pace strategy?
+2. Is there any relationship between a runner's gender and their marathon pace strategy?
+3. Does the relationship of marathon finish time to pace strategy depend on a runner's gender, or does the relationship of gender to pace strategy depend on a runner's finish time?
 
 ### Background
 
-Jared Ward, an American runner who placed 6th in the 2016 Olympic Marathon, is also an adjunct professor of statistics at Brigham Young University. He wrote his [masters thesis](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwid0biJ-Lz2AhXAkokEHf3sCU8QFnoECAMQAQ&url=http%3A%2F%2Fwww.runblogrun.com%2F2017%2F04%2F17%2FJared%2520Ward%2520Thesis.pdf&usg=AOvVaw1XFwxpzBfqOeB1fHjpMIz9) on marathon pace strategy. He analyzed split times for runners in the 2013 St. George Marathon. He found that elite runners tend to run more evenly paced races than non-elite runners, who tend to slow more in the second half of the race. He also found that women tend to more evenly pace races than men, but elite men and women run more similarly.
+Previous research has generally found differences in marathon pacing for runners of different ability levels, but has been mixed on differences in marathon pacing for runners of different genders. Jared Ward, an American runner who placed 6th in the 2016 Olympic Marathon, also wrote a masters thesis on marathon pace strategy. He analyzed split times for runners in the 2013 St. George Marathon. He found that elite runners tend to run more evenly paced races than non-elite runners, who tend to slow more in the second half of the race. He also found that women tend to run more evenly paced races than men, but elite men and women run more similarly to each other [1].
 
-[Santos-Lozano et al.](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjq8b_nkvn2AhWHKs0KHVJ9AbYQFnoECAYQAQ&url=https%3A%2F%2Fwww.researchgate.net%2Fpublication%2F260226395_Influence_of_Sex_and_Level_on_Marathon_Pacing_Strategy_Insights_from_the_New_York_City_Race&usg=AOvVaw1MtZH57nVKzPwB5wZUSMH5) studied finishers of the New York Marathon from 2006 to 2011 to examine the impact of ability level and sex on marathon pacing. They found that all runners tend to adopt a positive splits strategy, but that faster runners tend to run more evenly paced races regardless of sex. However, they didn't find significant differences between the sexes. [Daniel March et al.](https://journals.lww.com/nsca-jscr/Fulltext/2011/02000/Age,_Sex,_and_Finish_Time_as_Determinants_of.14.aspx) studied runners in the Last Chance Marathon in Dublin, OH from 2005 to 2007. They found that older runners, women, and faster runners tend to run more evenly paced races than younger runners, men, and slower runners respectively. However, they did not find any statistically significant interactions between age, sex, and runner ability.
+Alejandro Santos-Lozano et al. studied finishers of the New York Marathon from 2006 to 2011 to examine the impact of ability level and gender on marathon pacing. They found that all runners tend to adopt a positive splits strategy, but that faster runners tend to run more evenly paced races regardless of gender. However, they didn't find significant differences between men and women [2]. Daniel March et al. studied runners in the Last Chance Marathon in Dublin, OH from 2005 to 2007. They found that women and faster runners tend to run more evenly paced races than men and slower runners respectively. However, they did not find any statistically significant interactions between gender and runner ability [3].
 
-Finally, it is also worth noting that four of the last six marathon world records and the two fastest (official) marathons ever run were all actually run with a negative splits strategy, though still fairly close to even pacing (see [here](https://www.runnersworld.com/training/a20819476/what-world-records-teach-about-marathon-pacing/) and [here](https://runningmagazine.ca/sections/runs-races/a-side-by-side-comparison-of-kipchoge-and-bekeles-berlin-marathons/)).
+Finally, it is also worth noting that four of the last six marathon world records and the two fastest (official) marathons ever run were all actually run with a negative splits strategy, though still fairly close to even pacing [4-5].
+
+### Data
+
+The data for this project comes from the [2021 Boston Marathon results](https://boston.r.mikatiming.com/2021/?pid=leaderboard&pidp=leaderboard) on the Boston Athletic Association website. The data was scraped using the scrapy library for Python. The code for the scraper is included in the [marathon_scraper](https://github.com/tommcd09/marathon-pace-strategy/tree/main/marathon_scraper) folder of this project. Unfortunately, the BAA does not allow publishing or reposting Boston Marathon results without expressed written consent from the BAA, so the data is not reproduced with this project. However, the data can be obtained and viewed directly from the BAA website.
+
+The raw data contains the following columns:
+
+* <b>place_overall:</b> The runner's overall placing in the race.
+* <b>place_gender:</b> The runner's placing within their gender
+* <b>place_division:</b> The runner's placing within their age and gender group.
+* <b>sex:</b> The runner's gender. Relabeled "gender" during cleaning.
+* <b>age_group:</b> An integer representing the runner's age group. These integers were encoded in the URLs of marathon results pages and were used both to crawl through the results and to label the age groups. The numbers map to the following age groups: 1 = 18-39, 2 = 40-44, 9 = 45-49, 3 = 50-54, 10 = 55-59, 4 = 60-64, 11 = 65-69, 8 = 70-74, 12 = 75-79, 13 = 80+.
+* <b>name:</b> The runner's first name, last name, and three letter country code.
+* <b>bib:</b> The runner's unique bib number. Relabeled "runner_id" during cleaning.
+* <b>half_split:</b> The runner's time for the first half of the marathon. Relabeled "first_half" during cleaning.
+* <b>finish_net:</b> The runner's finish time measured from the time they crossed the starting line to the time they crossed the finish line. Relabeled "finish" during cleaning.
+* <b>finish_gun:</b> The runner's finish time measured from the time of the starting gun to the time they crossed the finish line.
 
 ### Project Organization and Methodology
 
-To answer the project questions, I ran a 2x2 factorial ANOVA on the data for runners age 18-39, breaking them into groups based on sex and whether they ran a Boston Marathon qualifying time during the race. Because there were some minor issues with homogeneity of variance between groups, I also ran an alternative analysis using weighted least squares instead of ordinary least squares.
+To answer the project questions, this project runs a 2x2 factorial ANOVA on the data for runners age 18-39, breaking them into groups based on gender and whether they ran a Boston Marathon qualifying time during the race.
 
-The project code is broken into five parts:
+The project code is broken into several parts:
 
-* The marathon_scraper folder contains the code for the scrapy project I used to scrape the Boston Marathon data from the results pages. The boston_spider.py file is the code I wrote to scrape the data, while most of the rest of the code is standard scrapy project code.
-* The data folder contains the raw data that was scraped from the Boston Marathon results.
-* The cleaning.ipynb file contains the code I used to clean the data that I scraped, along with commentary explaining my reasoning for each cleaning step.
-* The exploratory_data_analysis.ipynb file contains my initial exploration of the data I cleaned in the cleaning.ipnyb file, along my observations along the way.
-* The ANOVA.ipnyb file contains the experiment setup and the ANOVA itself, along with assumption testing, estimation of effect size, and power analysis. It also contains an alternative analysis using weighted least squares instead of ordinary least squares.
+* The scraper folder contains the code for the scrapy project used to scrape the Boston Marathon data from the results pages. The boston_spider.py file is the code written to scrape the data, while most of the rest of the code is standard scrapy project code.
+* The cleaning.ipynb notebook cleans the scraped data.
+* The exploratory_data_analysis.ipynb notebook explores the data cleaned in the cleaning notebook.
+* The anova.ipnyb notebook contains the experiment setup and the ANOVA itself, along with assumption testing, estimation of effect size, and power analysis. It also contains an alternative analysis using weighted least squares instead of ordinary least squares.
+* The cleaningfuncs.py, edafuncs.py, and anovafuncs.py modules contain functions used in the project.
+* The requirements.txt file contains the packages required to set up a virtual environment to run the code.
 
 ### Results
 
-The ANOVA revealed that there was a statistically significant interaction between the effects of sex and running a Boston qualifying time (F(1, 3932) = 20.79, p = 0.00).
+The ANOVA revealed that there was a statistically significant interaction between the effects of gender and running a Boston qualifying time (F(1, 3940) = 16.17, p = 0.00).
 
-Simple main effects analysis showed that running a Boston qualifying time had a statistically significant effect on split difference for both men (p = 0.00) and women (p = 0.00). The effect sizes of running a Boston qualifying time on men and women were 1.13 and 1.03 standard deviations, respectively. That is, men and women who ran BQ times ran split differences that were 1.13 and 1.03 standard deviations lower respectively than men and women who didn't run BQ times.
+Simple main effects analysis showed that running a Boston qualifying time had a statistically significant effect on split difference for both men (p = 0.00) and women (p = 0.00). The effect sizes of running a Boston qualifying time on men and women were 1.13 and 1.04 standard deviations, respectively. That is, men and women who ran BQ times ran split differences that were 1.13 and 1.04 standard deviations lower respectively than men and women who didn't run BQ times.
 
-Simple main effects analysis showed that sex did not have a statistically significant effect on split difference for runners who ran a Boston qualifying time (p = 0.08), but did have a statistically significant effect for runners who did not run a Boston qualifying time (p = 0.00). The effect size of being male on runners who did not run a Boston qualifying time was 0.29 standard deviations.
-
-One possible explanation for the results in this experiment is that there is some difference between men and women, whether physical or mental, that causes women to be somewhat better at running with a more even pace. But with enough training, both men and women are much better at controlling their pace and there are essentially no differences. However, the correlations found in this project do not imply causation, and figuring out the exact mechanism that explains these results is beyond the scope of this project.
-
-A major limitation of this project is the uniqueness of both the Boston Marathon in general and the 2021 Boston Marathon in particular. A larger amount of data, either from more runnings of the Boston Marathon or from a wider cross-section of marathons, would help to determine whether these results hold up generally across all marathons. Another major limitation of this experiment is looking only at runner age 18-39. An interesting follow up to this experiment would be to run a similar experiment on a larger selection of data and also examine the effects of age on pace strategy.
+Simple main effects analysis showed that gender did not have a statistically significant effect on split difference for runners who ran a Boston qualifying time (p = 0.08), but did have a statistically significant effect for runners who did not run a Boston qualifying time (p = 0.00). The effect size of being male on runners who did not run a Boston qualifying time was 0.26 standard deviations.

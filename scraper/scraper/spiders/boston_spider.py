@@ -5,7 +5,10 @@ class BostonSpider(scrapy.Spider):
     name = 'boston_spider'
 
     def start_requests(self):
-        yield scrapy.Request(f'https://boston.r.mikatiming.com/2021/?page=1&event=R&event_main_group=runner&num_results=1000&pid=search&pidp=start&search%5Bage_class%5D={self.age}&search%5Bsex%5D={self.sex}&search%5Bnation%5D=%25&search_sort=time_finish_netto')
+        yield scrapy.Request('https://boston.r.mikatiming.com/2021/?page=1&event'
+            '=R&event_main_group=runner&num_results=1000&pid=search&pidp'
+            f'=start&search%5Bage_class%5D={self.age}&search%5Bsex%5D'
+            f'={self.sex}&search%5Bnation%5D=%25&search_sort=time_finish_netto')
 
     def parse(self, response):
         for runner in response.xpath('//*[@id="cbox-main"]/div[2]/ul/li'):
